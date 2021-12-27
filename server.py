@@ -1,5 +1,5 @@
 ############------------ IMPORTS ------------############
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 
 
 ############------------ GLOBAL VARIABLE(S) ------------############
