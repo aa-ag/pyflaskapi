@@ -36,7 +36,9 @@ def get_books():
 
 
 @app.route("/books/<int:uid>", methods=["GET"])
-
+def get_book(uid):
+    requested_book = next(book for book in books if book["id"] == uid)
+    return jsonify(requested_book)
 
 
 ############------------ DRIVER CODE ------------############
