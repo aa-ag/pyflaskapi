@@ -25,12 +25,6 @@ books_store = [
 
 
 ############------------ ENDPOINT(S) ------------############
-### HOME ####################################################
-@books_blueprint.route("/")
-def home():
-    return "Update the url ^"
-
-
 ### GET #####################################################
 @books_blueprint.route("/books", methods=["GET"])
 def get_books():
