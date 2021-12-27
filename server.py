@@ -34,4 +34,9 @@ def get_books():
     serialized = {"books": books}
     return jsonify(serialized)
 
+
+@app.route("/books/<int:uid>", methods=["GET"])
+
+
+
 ############------------ DRIVER CODE ------------############
