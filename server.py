@@ -48,8 +48,15 @@ def get_book(uid):
 def post_book():
     request_json = request.get_json()
 
-    book_title = request_json["title"]
-    book_author = request_json["author"]
+    try:
+        book_title = request_json["title"]
+    except KeyError:
+        return "Please provide a title", 400
+
+    try:
+        book_author = request_json["author"]
+    except KeyError:
+        return "Please provide an author", 400
 
     new_book = {
         "id": books[-1]["id"] + 1,
