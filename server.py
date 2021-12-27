@@ -24,11 +24,13 @@ books = [
 ]
 
 ############------------ FUNCTION(S) ------------############
+### HOME ####################################################
 @app.route("/")
 def home():
     return "Update the url ^"
 
 
+### GET #####################################################
 @app.route("/books", methods=["GET"])
 def get_books():
     serialized = {"books": books}
@@ -41,3 +43,7 @@ def get_book(uid):
     return jsonify(requested_book)
 
 
+### POST ####################################################
+@app.route("/books", methods=["POST"])
+def post_book():
+    pass
