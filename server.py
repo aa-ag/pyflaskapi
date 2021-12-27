@@ -1,5 +1,5 @@
 ############------------ IMPORTS ------------############
-from flask import Flask
+from flask import Flask, jsonify
 
 
 ############------------ GLOBAL VARIABLE(S) ------------############
@@ -24,8 +24,8 @@ books = [
 ]
 
 ############------------ FUNCTION(S) ------------############
-@app.route("/")
-def hello_world():
-    return "<p>Hello World</p>"
+@app.route("/books", methods=["GET"])
+def get_books():
+    pass
 
 ############------------ DRIVER CODE ------------############
