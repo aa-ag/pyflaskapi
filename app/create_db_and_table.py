@@ -4,8 +4,12 @@ from sqlite3 import Error
 
 
 ############------------ GLOBAL VARIABLE(S) ------------############
+sql_create_db = """
+sqlite3 books.db
+"""
+
 sql_create_table = """
-CREATE TABLE IF NOT EXISTS books (
+CREATE TABLE IF NOT EXISTS book (
     id integer PRIMARY KEY,
     title text NOT NULL,
     author text NOT NULL
@@ -25,6 +29,7 @@ def create_books_db_and_books_table():
         if connection:
             try:
                 cursor = connection.cursor()
+                # cursor.execute(sql_create_db)
                 cursor.execute(sql_create_table)
             except Error as e:
                 print(e)
