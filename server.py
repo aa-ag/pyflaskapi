@@ -24,8 +24,14 @@ books = [
 ]
 
 ############------------ FUNCTION(S) ------------############
+@app.route("/")
+def home():
+    return "Update the url ^"
+
+
 @app.route("/books", methods=["GET"])
 def get_books():
-    pass
+    serialized = {"books": books}
+    return jsonify(serialized)
 
 ############------------ DRIVER CODE ------------############
