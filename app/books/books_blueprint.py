@@ -53,16 +53,22 @@ def post_book():
     except KeyError:
         return "Please provide an author", 400
 
-    new_book = {
-        "id": books_store[-1]["id"] + 1,
-        "title": book_title,
-        "author": book_author,
-    }
+    titles = [b["title"] for b in books_store]
 
-    books_store.append(new_book)
+    if book_title in titles:
+        return "Title already exists", 400
+    else:
+        new_book = {
+            "id": books_store[-1]["id"] + 1,
+            "title": book_title,
+            "author": book_author,
+        }
 
-    serialized = {
-        "books": books_store
-    }
+        books_store.append(new_book)
 
-    return jsonify(serialized)
+        serialized = {
+            "books": books_store
+        }
+
+        return jsonify(serialized)
+    
