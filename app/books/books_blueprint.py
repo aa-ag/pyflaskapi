@@ -26,26 +26,26 @@ books_store = [
 
 ############------------ ENDPOINT(S) ------------############
 ### HOME ####################################################
-@app.route("/")
+@books_blueprint.route("/")
 def home():
     return "Update the url ^"
 
 
 ### GET #####################################################
-@app.route("/books", methods=["GET"])
+@books_blueprint.route("/books", methods=["GET"])
 def get_books():
     serialized = {"books": books_store}
     return jsonify(serialized)
 
 
-@app.route("/books/<int:uid>", methods=["GET"])
+@books_blueprint.route("/books/<int:uid>", methods=["GET"])
 def get_book(uid):
     requested_book = next(book for book in books_store if book["id"] == uid)
     return jsonify(requested_book)
 
 
 ### POST ####################################################
-@app.route("/books", methods=["POST"])
+@books_blueprint.route("/books", methods=["POST"])
 def post_book():
     request_json = request.get_json()
 
