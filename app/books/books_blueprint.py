@@ -6,30 +6,14 @@ from models import Book
 ############------------ GLOBAL VARIABLE(S) ------------############
 books_blueprint = Blueprint("books_blueprint", __name__, url_prefix="/books")
 
-books_store = [
-    {
-        "id": 1,
-        "title": "Book 1",
-        "author": "Author 1"
-    },
-    {
-        "id": 2,
-        "title": "Book 2",
-        "author": "Author 2"
-    },
-    {
-        "id": 3,
-        "title": "Book 3",
-        "author": "Author 3"
-    }
-]
-
 
 ############------------ ENDPOINT(S) ------------############
 ### GET #####################################################
 @books_blueprint.route("", methods=["GET"])
 def get_books():
-    serialized = {"books": books_store}
+    books_store = Book.query.all()
+    serialized_books = [book.serialized() for book in books_store]
+    serialized = {"books": serialized_books}
     return jsonify(serialized)
 
 
