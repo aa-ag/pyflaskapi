@@ -46,4 +46,21 @@ def get_book(uid):
 ### POST ####################################################
 @app.route("/books", methods=["POST"])
 def post_book():
-    pass
+    request_json = request.get_json()
+
+    book_title = request_json["title"]
+    book_author = request_json["author"]
+
+    new_book = {
+        "id": books[-1]["id"] + 1,
+        "title": book_title,
+        "author": book_author,
+    }
+
+    books.append(new_book)
+
+    serialized = {
+        "books": books
+    }
+
+    return jsonify(serialized)
