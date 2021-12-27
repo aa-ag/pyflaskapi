@@ -6,6 +6,7 @@ Completing Coursera's [Building a REST API with Python and Flask](https://www.co
 
 - `conda create --name pyflaskapi`
 - `conda install -c anaconda flask`
+- `conda install -c conda-forge flask-sqlalchemy`
 
 ## to run
 
