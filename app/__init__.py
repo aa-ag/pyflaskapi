@@ -1,6 +1,7 @@
 ############------------ IMPORTS ------------############
 from flask import Flask
 from app.books.books_blueprint import books_blueprint
+from flask_sqlalchemy import SQLAlchemy
 
 
 ############------------ FUNCTION(S) ------------############
