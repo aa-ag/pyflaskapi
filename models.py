@@ -13,3 +13,5 @@ class Book(db.Model):
             "title": self.title,
             "author": self.author
         }
+
+        return json

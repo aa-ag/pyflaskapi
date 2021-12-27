@@ -1,6 +1,7 @@
 ############------------ IMPORTS ------------############
 from flask import Flask, Blueprint, jsonify, request
-
+from app import db
+from models import Book
 
 ############------------ GLOBAL VARIABLE(S) ------------############
 books_blueprint = Blueprint("books_blueprint", __name__, url_prefix="/books")
