@@ -19,7 +19,7 @@ def get_books():
 
 @books_blueprint.route("<int:uid>", methods=["GET"])
 def get_book(uid):
-    requested_book = next(book for book in books_store if book["id"] == uid)
+    requested_book = Book.query.get(uid)
     return jsonify(requested_book)
 
 
