@@ -53,4 +53,8 @@ def post_book():
         db.session.commit()
 
         return jsonify(new_book.serialized())
-    
+
+### PUT #####################################################
+@books_blueprint.route("", methods=["PUT"])
+def put_book():
+    pass
