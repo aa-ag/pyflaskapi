@@ -73,13 +73,19 @@ def put_book(uid):
     except KeyError:
         return "Please provide an author", 400
 
-    # update book found by id
-    requested_book.title = book_title
-    requested_book.author = book_author
+    books_store = Book.query.all()
+    titles = [book.serialized()["title"] for book in books_store]
 
-    # add changes to session and save them to the db
-    db.session.add(requested_book)
-    db.session.commit()
+    if book_title in titles:
+        return "Title already exists", 400
+    else:
+        # update book found by id
+        requested_book.title = book_title
+        requested_book.author = book_author
 
-    # show updated version of the book
-    return jsonify(requested_book.serialized())
+        # add changes to session and save them to the db
+        db.session.add(requested_book)
+        db.session.commit()
+
+        # show updated version of the book
+        return jsonify(requested_book.serialized())
