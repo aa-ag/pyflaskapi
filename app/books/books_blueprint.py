@@ -55,6 +55,6 @@ def post_book():
         return jsonify(new_book.serialized())
 
 ### PUT #####################################################
-@books_blueprint.route("", methods=["PUT"])
-def put_book():
+@books_blueprint.route("<int:uid>", methods=["PUT"])
+def put_book(uid):
     pass
