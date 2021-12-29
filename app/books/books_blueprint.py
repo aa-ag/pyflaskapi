@@ -63,9 +63,19 @@ def put_book(uid):
     # have json object from input
     request_json = request.get_json()
 
+    try:
+        book_title = request_json["title"]
+    except KeyError:
+        return "Please provide a title", 400
+
+    try:
+        book_author = request_json["author"]
+    except KeyError:
+        return "Please provide an author", 400
+
     # update book found by id
-    requested_book.title = request_json["title"]
-    requested_book.author = request_json["author"]
+    requested_book.title = book_title
+    requested_book.author = book_author
 
     # add changes to session and save them to the db
     db.session.add(requested_book)
