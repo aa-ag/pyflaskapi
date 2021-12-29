@@ -57,15 +57,19 @@ def post_book():
 ### PUT #####################################################
 @books_blueprint.route("<int:uid>", methods=["PUT"])
 def put_book(uid):
+    # find book in db by id
     requested_book = Book.query.get(uid)
 
+    # have json object from input
     request_json = request.get_json()
 
+    # update book found by id
     requested_book.title = request_json["title"]
     requested_book.author = request_json["author"]
 
-
+    # add changes to session and save them to the db
     db.session.add(requested_book)
     db.session.commit()
 
+    # show updated version of the book
     return jsonify(requested_book.serialized())
