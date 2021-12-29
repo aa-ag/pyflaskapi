@@ -1,5 +1,5 @@
 ############------------ IMPORTS ------------############
-from flask import Flask, Blueprint, jsonify, request
+from flask import Flask, Blueprint, json, jsonify, request
 from app import db
 from models import Book
 
@@ -57,4 +57,15 @@ def post_book():
 ### PUT #####################################################
 @books_blueprint.route("<int:uid>", methods=["PUT"])
 def put_book(uid):
-    pass
+    requested_book = Book.query.get(uid)
+
+    request_json = request.get_json()
+
+    requested_book.title = request_json["title"]
+    requested_book.author = request_json["author"]
+
+
+    db.session.add(requested_book)
+    db.session.commit()
+
+    return jsonify(requested_book.serialized())
