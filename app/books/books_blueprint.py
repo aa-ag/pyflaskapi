@@ -93,6 +93,6 @@ def put_book(uid):
 
 
 ### DELETE ##################################################
-@books_blueprint.route("<int:uid>", methods=["DELETE"])
+@books_blueprint.route("delete/<int:uid>", methods=["DELETE"])
 def delete_book(uid):
     pass
