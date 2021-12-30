@@ -10,6 +10,7 @@ class Book(db.Model):
 
     def serialized(self):
         json = {
+            "id": self.id,
             "title": self.title,
             "author": self.author
         }
