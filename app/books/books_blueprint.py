@@ -55,7 +55,7 @@ def post_book():
         return jsonify(new_book.serialized())
 
 ### PUT #####################################################
-@books_blueprint.route("<int:uid>", methods=["PUT"])
+@books_blueprint.route("<int:uid>/udate", methods=["PUT"])
 def put_book(uid):
     # find book in db by id
     requested_book = Book.query.get(uid)
@@ -89,3 +89,4 @@ def put_book(uid):
 
         # show updated version of the book
         return jsonify(requested_book.serialized())
+
