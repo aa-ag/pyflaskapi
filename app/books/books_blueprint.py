@@ -95,4 +95,15 @@ def put_book(uid):
 ### DELETE ##################################################
 @books_blueprint.route("delete/<int:uid>", methods=["DELETE"])
 def delete_book(uid):
-    pass
+    # find book in db by id
+    requested_book = Book.query.get(uid)
+
+    # have json object from input
+    request_json = request.get_json()
+
+    # add changes to session and save them to the db
+    db.session.delete(requested_book)
+    db.session.commit()
+
+    # show updated version of the book
+    return jsonify(requested_book.serialized())
