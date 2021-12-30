@@ -107,3 +107,8 @@ def delete_book(uid):
 
     # show updated version of the book
     return jsonify(requested_book.serialized())
+
+
+@books_blueprint.route("purge", methods=["DELETE"])
+def purge_books():
+    pass
