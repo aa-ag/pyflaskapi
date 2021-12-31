@@ -25,7 +25,7 @@ def get_book(uid):
 
 ### POST ####################################################
 @books_blueprint.route("", methods=["POST"])
-def post_book():
+def create_book():
     request_json = request.get_json()
 
     try:
