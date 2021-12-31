@@ -62,6 +62,9 @@ def create_many_books():
     request_json = request.get_json()
     books = request_json["books"]
     count = 0
+    books_store = Book.query.all()
+    titles = [book.serialized()["title"] for book in books_store]
+
     for book in books:
         try:
             book_title = book["title"]
@@ -73,6 +76,8 @@ def create_many_books():
         except KeyError:
             return "Please provide an author", 400
         
+        if book_title in titles:
+            return f"Title {book_title} already exists: created {count} books", 400
         new_book = Book(
                         title=book_title,
                         author=book_author
