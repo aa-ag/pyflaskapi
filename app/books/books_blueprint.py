@@ -63,8 +63,16 @@ def create_many_books():
     books = request_json["books"]
     count = 0
     for book in books:
-        book_title = book["title"]
-        book_author = book["author"]
+        try:
+            book_title = book["title"]
+        except KeyError:
+            return "Please provide a title", 400
+
+        try:
+            book_author = book["author"]
+        except KeyError:
+            return "Please provide an author", 400
+        
         new_book = Book(
                         title=book_title,
                         author=book_author
