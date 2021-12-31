@@ -1,9 +1,12 @@
 ############------------ IMPORTS ------------############
-from unittest import TestCase
+import unittest
 from models import Book
 
 
-############------------ CLASS(SES) ------------############
-class BookTest(TestCase):
-    def create_book_test():
-        pass
+############------------ FUNCTION(S) ------------############
+class BookTest(unittest.TestCase):
+    def creating_book(self):
+        test_book_title = 'Test Title'
+        test_book_author = 'Test Author'
+        test_book = Book(test_book_title, test_book_author)
+        self.assertEqual(test_book.title, test_book_title)
