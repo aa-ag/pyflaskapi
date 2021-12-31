@@ -10,3 +10,4 @@ class BookTest(unittest.TestCase):
         test_book_author = 'Test Author'
         test_book = Book(test_book_title, test_book_author)
         self.assertEqual(test_book.title, test_book_title)
+        self.assertEqual(test_book.author, test_book_author)
