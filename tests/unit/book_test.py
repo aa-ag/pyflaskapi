@@ -3,10 +3,7 @@ from unittest import TestCase
 from models import Book
 
 
-############------------ GLOBAL VARIABLE(S) ------------############
-
-
-############------------ FUNCTION(S) ------------############
-
-
-############------------ DRIVER CODE ------------############
+############------------ CLASS(SES) ------------############
+class BookTest(TestCase):
+    def create_book_test():
+        pass
