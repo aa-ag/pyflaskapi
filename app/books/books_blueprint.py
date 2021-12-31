@@ -148,9 +148,10 @@ def delete_book(uid):
 @books_blueprint.route("purge", methods=["DELETE"])
 def purge_books():
     all_books = Book.query.all()
-    
-    for book in all_books:
-        db.session.delete(book)
-        db.session.commit()
 
-    return "all books have been purged"
+    if len(all_books):
+        for book in all_books:
+            db.session.delete(book)
+            db.session.commit()
+        return "all books have been purged"
+    return "no books left to purge"
