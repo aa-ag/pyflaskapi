@@ -68,7 +68,8 @@ def create_many_books():
     count = 0
     books_store = Book.query.all()
     titles = [book.serialized()["title"] for book in books_store]
-
+    already_exists = list()
+    
     for book in books:
         try:
             book_title = book["title"]
@@ -79,17 +80,22 @@ def create_many_books():
             book_author = book["author"]
         except KeyError:
             return "Please provide an author", 400
-        
-        if book_title in titles:
-            return f"Title {book_title} already exists: created {count} books", 400
-        new_book = Book(
-                        title=book_title,
-                        author=book_author
-                    )
 
-        db.session.add(new_book)
-        db.session.commit()
-        count += 1
+        if book_title in titles:
+            already_exists.append(book_title)
+            continue
+        else:
+            new_book = Book(
+                            title=book_title,
+                            author=book_author
+                        )
+
+            db.session.add(new_book)
+            db.session.commit()
+            count += 1
+
+    if already_exists:
+        return f"Title(s) {already_exists} already exists: created {count} books"
     return f"{count} books created"
 
 
