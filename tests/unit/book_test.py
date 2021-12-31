@@ -1,5 +1,5 @@
 ############------------ IMPORTS ------------############
-import unittest
+from unittest import TestCase
 from models import Book
 
 
