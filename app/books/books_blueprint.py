@@ -15,8 +15,10 @@ books_blueprint = Blueprint("books_blueprint", __name__, url_prefix="/books")
 def get_books():
     books_store = Book.query.all()
     serialized_books = [book.serialized() for book in books_store]
-    serialized = {"books": serialized_books}
-    return jsonify(serialized)
+    if len(serialized_books):
+        serialized = {"books": serialized_books}
+        return jsonify(serialized)
+    return "no books here ;)"
 
 
 @books_blueprint.route("<int:uid>", methods=["GET"])
