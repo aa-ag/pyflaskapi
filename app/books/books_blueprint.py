@@ -69,7 +69,7 @@ def create_many_books():
     books_store = Book.query.all()
     titles = [book.serialized()["title"] for book in books_store]
     already_exists = list()
-    
+
     for book in books:
         try:
             book_title = book["title"]
@@ -163,5 +163,5 @@ def purge_books():
         for book in all_books:
             db.session.delete(book)
             db.session.commit()
-        return "all books have been purged"
+        return f"all {len(all_books)} books have been purged"
     return "no books left to purge"
