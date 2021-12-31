@@ -2,6 +2,8 @@
 from flask import Flask, Blueprint, json, jsonify, request
 from app import db
 from models import Book
+from pprint import pprint
+
 
 ############------------ GLOBAL VARIABLE(S) ------------############
 books_blueprint = Blueprint("books_blueprint", __name__, url_prefix="/books")
@@ -53,6 +55,11 @@ def create_book():
         db.session.commit()
 
         return jsonify(new_book.serialized())
+
+
+@books_blueprint.route("/create_many", methods=["POST"])
+def create_many_books():
+    pass
 
 
 ### PUT #####################################################
