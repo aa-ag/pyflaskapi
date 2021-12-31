@@ -59,7 +59,21 @@ def create_book():
 
 @books_blueprint.route("/create_many", methods=["POST"])
 def create_many_books():
-    pass
+    request_json = request.get_json()
+    books = request_json["books"]
+    count = 0
+    for book in books:
+        book_title = book["title"]
+        book_author = book["author"]
+        new_book = Book(
+                        title=book_title,
+                        author=book_author
+                    )
+
+        db.session.add(new_book)
+        db.session.commit()
+        count += 1
+    return f"{count} books created"
 
 
 ### PUT #####################################################
